@@ -1,0 +1,69 @@
+// $Id: AssumptionType.cpp 1.2 2005/05/06 21:22:15Z sfmckay Exp $
+//
+// Functions for the assumption types allowed in the piadata library.
+
+#include "AssumptionType.h"
+#include "PiaException.h"
+#include "Resource.h"
+
+using namespace std;
+
+// Description: Checks average wage increase indicator in general case.
+//
+// Throws: PiaException of type PIA_IDS_IALTAW1 if average wage increase
+//   indicator is out of range in general case.
+//
+// Arguments:
+//   ialtawt: Assumption type to check.
+void AssumptionType::ialtawCheck1( int ialtawt )
+{
+   if (ialtawt < static_cast<int>(ALTERN_I) ||
+      ialtawt > static_cast<int>(OTHER_ASSUM)) {
+      throw PiaException(PIA_IDS_IALTAW1);
+   }
+}
+
+// Description: Checks average wage increase indicator in Statement case.
+//
+// Throws: PiaException of type PIA_IDS_IALTAW2 if average wage increase
+//   indicator is out of range in Statement case.
+//
+// Arguments:
+//   ialtawt: Assumption type to check.
+void AssumptionType::ialtawCheck2( int ialtawt )
+{
+   if (ialtawt != static_cast<int>(FLAT) &&
+      ialtawt != static_cast<int>(PEBS_ASSUM)) {
+      throw PiaException(PIA_IDS_IALTAW2);
+   }
+}
+
+// Description: Checks benefit increase indicator in general case.
+//
+// Throws: PiaException of type PIA_IDS_IALTBI1 if benefit increase indicator
+//   is out of range in general case.
+//
+// Arguments:
+//   ialtbit: Assumption type to check.
+void AssumptionType::ialtbiCheck1( int ialtbit )
+{
+   if (ialtbit < static_cast<int>(ALTERN_I) ||
+      ialtbit > static_cast<int>(OTHER_ASSUM)) {
+      throw PiaException(PIA_IDS_IALTBI1);
+   }
+}
+
+// Description: Checks benefit increase indicator in Statement case.
+//
+// Throws: PiaException of type PIA_IDS_IALTBI2 if benefit increase indicator
+//   is out of range in Statement case.
+//
+// Arguments:
+//   ialtbit: Assumption type to check.
+void AssumptionType::ialtbiCheck2( int ialtbit )
+{
+   if (ialtbit != static_cast<int>(FLAT) &&
+      ialtbit != static_cast<int>(PEBS_ASSUM)) {
+      throw PiaException(PIA_IDS_IALTBI2);
+   }
+}

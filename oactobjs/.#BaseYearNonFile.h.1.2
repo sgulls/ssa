@@ -1,0 +1,36 @@
+// $Id: BaseYearNonFile.h 1.11 2005/10/14 14:28:17Z 277133 Exp $
+//
+// Declarations for class to manage base year stored with code.
+
+#pragma once
+
+#if !defined(SHORTFILENAMES)
+#include "baseyear.h"
+#else
+#include "baseyrh"
+#endif
+
+// {group:Calculation Classes}
+// Description: Manages the computation year for a pia program where it is
+//   stored with the code.
+//
+// Remarks: Currently YEAR is 2006 and TR_YEAR is 2005.
+class BaseYearNonFile : public BaseYear
+{
+   public:
+      // Description: Year for which data has been stored.
+      //
+      // Remarks: For instance, a value of 2005 means that the December 2004
+      // benefit increase, 2003 average wage, and 2005 wage base are available.
+      // This is updated in October.
+      static const int YEAR = 2006;
+      // Description: Year of Trustees Report assumptions.
+      //
+      // Remarks: This is updated in March, so it is equal to YEAR from March
+      // to October, and 1 less than YEAR from October to March.
+      static const int TR_YEAR = 2005;
+   public:
+      BaseYearNonFile();
+      void read();
+      void write();
+};

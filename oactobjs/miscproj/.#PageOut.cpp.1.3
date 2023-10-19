@@ -1,0 +1,36 @@
+// $Id: pageout.cpp,v 1.4 2005/10/27 15:17:59 djolson Exp $
+//
+// Functions to write out a generic page of output.
+
+#include <iostream>
+#include "PageOut.h"
+
+using namespace std;
+
+// Description: Initializes PageOut.
+PageOut::PageOut() : outputString()
+{
+   outputString.reserve(100);
+}
+
+// Description: Destructor.
+PageOut::~PageOut()
+{ }
+
+// Description: Prints strings.
+//
+// Arguments:
+//   outfile: Output file name and page counters.
+void PageOut::print( Outfile& outfile ) const
+{
+   for (unsigned i1 = 0; i1 < outputString.size(); i1++)
+      outfile.printLine(outputString[i1]);
+}
+
+// Arguments:
+//   ostrm: Output stream.
+void PageOut::print( std::ostream& ostrm ) const
+{
+   for (unsigned i1 = 0; i1 < outputString.size(); i1++)
+      ostrm << outputString[i1] << endl;
+}
